@@ -1,5 +1,5 @@
 public class Student extends Person {
-    protected int term;
+    private int term;
 
     // Creates a student object
     public Student(int idParam, String firstNameParam, String lastNameParam, int termParam) {

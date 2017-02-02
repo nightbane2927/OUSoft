@@ -1,8 +1,8 @@
 public class Instructor extends Person {
-    protected int officeNum;
+    private int officeNum;
 
     // Creates an instructor object
-    public Instructor(int idParam, String firstNameParam, String lastNameParam, int officeNumParam) {
+    Instructor(int idParam, String firstNameParam, String lastNameParam, int officeNumParam) {
         super(idParam, firstNameParam, lastNameParam);
         officeNum = officeNumParam;
     }

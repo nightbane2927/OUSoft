@@ -1,11 +1,12 @@
 import java.util.Scanner;
 
-public class OUPeopleClient {
+public class Main {
     public static void main(String[] args) {
         String skip;
         boolean keepGoing;
         int stuSize = 0;
         int instSize = 0;
+        int courseSize = 0;
         int operation;
         Scanner scan = new Scanner(System.in);
 
@@ -13,13 +14,13 @@ public class OUPeopleClient {
         System.out.println();
         System.out.println("Please select an option >");
         System.out.println();
-        System.out.println("1: Create a database of students and instructors >");
+        System.out.println("1: Create a database of students, instructors and courses >");
         System.out.println();
 
 
         if(scan.nextInt() == 1) {
             System.out.println();
-            System.out.println("Insert student amount and instructor amount separated by a space >");
+            System.out.println("Insert number of students, instructors, and courses separated by a space >");
             System.out.println();
         }
 
@@ -36,10 +37,12 @@ public class OUPeopleClient {
         while(scan.hasNextInt()){
             stuSize = scan.nextInt();
             instSize = scan.nextInt();
+            courseSize = scan.nextInt();
             break;
         }
 
-        OUPeople people = new OUPeople(stuSize,instSize);
+        //initializes OUPeople object
+        OUSoft people = new OUSoft(stuSize, instSize, courseSize);
         keepGoing = true;
 
         while(keepGoing) {
@@ -68,6 +71,8 @@ public class OUPeopleClient {
 
             }
             skip = scan.nextLine();
+
+            //prompts user for actions until they want to quit
             switch(operation) {
                 case 1: //adding a student
                     System.out.println();
@@ -83,7 +88,7 @@ public class OUPeopleClient {
                     System.out.println("Enter id #, first name, last name, office num. >");
                     System.out.println();
                     Instructor newInst = new Instructor(scan.nextInt(), scan.next(), scan.next(), scan.nextInt());
-                    people.addIntstructor(newInst);
+                    people.addInstructor(newInst);
                     break;
 
                 case 3: //retrieve a student
@@ -126,7 +131,6 @@ public class OUPeopleClient {
                     people.removeInstructor(instIdEntered);
                     System.out.println();
                     System.out.println("Instructor" + " " + instIdEntered + " " + "removed");
-
                     break;
 
                 case 7: //prints all student info
@@ -143,36 +147,28 @@ public class OUPeopleClient {
                     keepGoing = false;
                     break;
 
-                default: //default case
+                default: //exits database
                     System.out.println();
                     System.out.println("Error in operation selection");
                     System.out.println("Exiting database");
                     return;
             }
-
-
-
-
-
         }
 
         System.out.println();
+        scan.close();
         System.out.println("Exiting OUPeople!");
-
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
     }
 
+}
+
+/*To make program clear, one recommended design is to have seven files
+ (Person.java, Student.java, Instructor.java, Course.java, Enrollment.java, OUSoft.java (the database) and Main.java(The console)).
+ An OUSoft object is created to manage the array for Student, Instructor, and Course, the linked list of Enrollment objects,
+ as well all the methods you implement for working with the objects, arrays and linked list.
+ The Main class provides the main method and user interface functionality for managing students, instructors, courses and enrollment.
+ You main program also needs to create the course objects and feed in information for the course.
+  Then you will prompt for user input for enrollment, which could be either student ID or student first and last name.
+  You should also provide interfaces for reporting number of enrollment, listing the enrollment, and list the course information, etc.
+  Try to make your interface and design from the perspective of users of your applications (30 points)
+  */

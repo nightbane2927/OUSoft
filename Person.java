@@ -1,7 +1,7 @@
 public abstract class Person {
-    protected int id;
-    protected String firstName;
-    protected String lastName;
+     int id;
+     String firstName;
+     String lastName;
 
     // Constructor for class, since class is abstract, only used for var.
     // initialization
@@ -12,7 +12,7 @@ public abstract class Person {
     }
 
     // Returns the id
-    public int getId() {
+    int getId() {
         return id;
     }
 
